@@ -1,0 +1,162 @@
+@import 'tailwindcss';
+
+@theme {
+  /* ── Rothian Cyber brand tokens — deep-sea dark with bioluminescent accents ── */
+  --color-brand-violet: #8b5cf6;
+  --color-brand-purple: #6d28d9;
+  --color-brand-cyan: #2dd4ee;
+  --color-brand-alert: #f2295b;
+
+  --color-abyss-950: #04060c;
+  --color-abyss-900: #080c16;
+  --color-abyss-800: #0e1424;
+  --color-abyss-700: #1a2338;
+  --color-abyss-100: #e8ecf5;
+
+  --color-frost: #f4f7fb;
+  --color-frost-dim: #e9eef7;
+
+  --font-display: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Chivo', ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --animate-marquee: marquee 42s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 36s linear infinite;
+  --animate-pulse-glow: pulse-glow 3.2s ease-in-out infinite;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes marquee-reverse {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      opacity: 0.45;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  @apply bg-abyss-950 font-body text-abyss-100 antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-brand-violet);
+  color: #fff;
+}
+
+/* ── Utilities ── */
+@utility text-gradient {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-brand-violet) 0%,
+    var(--color-brand-cyan) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility bg-brand-gradient {
+  background-image: linear-gradient(
+    137deg,
+    var(--color-brand-purple) 0%,
+    var(--color-brand-violet) 45%,
+    var(--color-brand-cyan) 100%
+  );
+}
+
+@utility container-site {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 3rem;
+  }
+}
+
+/* Big editorial display heading */
+@utility heading-display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+@utility heading-section {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+/* Eyebrow label above section headings */
+@utility eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* Faint blueprint grid for dark sections */
+@utility bg-cyber-grid {
+  background-image:
+    linear-gradient(to right, rgb(139 92 246 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(139 92 246 / 0.05) 1px, transparent 1px);
+  background-size: 3.5rem 3.5rem;
+}
+
+/* Respect reduced motion globally */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
